@@ -3,6 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Sketchpad">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#EDF1F1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0C1417" media="(prefers-color-scheme: dark)">
 <title>Waterworks Sketchpad</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap">
@@ -58,14 +64,14 @@ input,textarea{-webkit-user-select:text;user-select:text}
 #title{font-family:var(--ui);font-weight:600;font-size:15px;background:transparent;
   border:1px solid transparent;border-radius:4px;padding:4px 7px;color:var(--ink);
   min-width:130px;max-width:32vw;flex:0 1 240px}
-#title:hover{border-color:var(--line)}
+@media (hover:hover){#title:hover{border-color:var(--line)}}
 #title:focus{outline:none;border-color:var(--accent);background:var(--surface)}
 .grp{display:flex;align-items:center;gap:4px;padding:2px;background:var(--surface);
   border:1px solid var(--line);border-radius:6px}
 .tb{font-family:var(--ui);font-weight:600;font-size:13px;letter-spacing:.02em;
   background:transparent;border:0;border-radius:4px;padding:5px 9px;cursor:pointer;
   display:flex;align-items:center;gap:5px;white-space:nowrap}
-.tb:hover{background:var(--accent-soft)}
+@media (hover:hover){.tb:hover{background:var(--accent-soft)}}
 .tb[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
 :root[data-theme="dark"] .tb[aria-pressed="true"],
 .tb[aria-pressed="true"] kbd{color:inherit}
@@ -90,7 +96,7 @@ select,input[type=text],input[type=number]{font-family:var(--ui);font-weight:600
 .sym-btn{display:flex;align-items:center;gap:8px;width:100%;background:transparent;
   border:1px solid transparent;border-radius:6px;padding:3px 6px;cursor:grab;text-align:left;
   touch-action:pan-y}
-.sym-btn:hover{background:var(--surface);border-color:var(--line)}
+@media (hover:hover){.sym-btn:hover{background:var(--surface);border-color:var(--line)}}
 .sym-btn[data-armed="1"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
 .sym-btn[data-armed="1"] .mini{color:var(--on-accent)}
 .mini{width:46px;height:30px;flex:0 0 46px;color:var(--ink-soft)}
@@ -161,8 +167,8 @@ select,input[type=text],input[type=number]{font-family:var(--ui);font-weight:600
 .btnrow{display:flex;gap:6px;flex-wrap:wrap}
 .btn{font-family:var(--ui);font-weight:600;font-size:12.5px;background:var(--surface);
   border:1px solid var(--line);border-radius:5px;padding:6px 9px;cursor:pointer;flex:1 1 auto}
-.btn:hover{background:var(--accent-soft);border-color:var(--accent)}
-.btn.warn:hover{background:var(--danger);border-color:var(--danger);color:#FFFFFF}
+@media (hover:hover){.btn:hover{background:var(--accent-soft);border-color:var(--accent)}}
+@media (hover:hover){.btn.warn:hover{background:var(--danger);border-color:var(--danger);color:#FFFFFF}}
 .hint{font-size:12px;line-height:1.5;color:var(--muted)}
 .hint b{color:var(--ink-soft);font-weight:600}
 .keys{display:grid;grid-template-columns:auto 1fr;gap:3px 9px;font-size:11.5px;color:var(--muted)}
@@ -189,16 +195,33 @@ dialog h3{margin:0 0 8px;font-family:var(--ui);font-size:17px;font-weight:700}
 dialog textarea{width:100%;height:210px;font-family:var(--mono);font-size:11px;
   background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:8px}
 
+@media (pointer:coarse){
+  .tb{padding:10px 13px;font-size:14px;min-height:44px}
+  .tb kbd{display:none}
+  .db{padding:11px 15px;font-size:14px;min-height:44px}
+  .btn{padding:11px 12px;font-size:14px;min-height:44px}
+  .sym-btn{min-height:50px;padding:5px 7px;gap:10px}
+  .mini{width:54px;height:34px;flex:0 0 54px}
+  .sym-btn span{font-size:13.5px}
+  .palette{width:212px;flex:0 0 212px}
+  .insp{width:252px;flex:0 0 252px}
+  /* 16px keeps Safari from zooming the page when a field takes focus */
+  #title,select,input[type=text],input[type=number]{font-size:16px;min-height:42px}
+  .fld label{font-size:12px}
+  .status{font-size:12px}
+  .keys{font-size:12.5px}
+}
 @media (max-width:860px){
   .body{flex-direction:column;position:relative}
   .palette{width:100%;flex:0 0 auto;display:flex;gap:6px;overflow-x:auto;overflow-y:hidden;
     padding:6px 8px;border-right:0;border-bottom:1px solid var(--line)}
   .pgrp{display:none}
-  .sym-btn{flex:0 0 auto;flex-direction:column;width:66px;gap:2px;padding:4px 2px;text-align:center;
-    touch-action:pan-x}
-  .mini{width:44px;height:26px;flex:0 0 26px}
-  .sym-btn span{font-size:10px}
-  .insp{position:absolute;left:0;right:0;bottom:0;width:auto;flex:0 0 auto;max-height:46%;
+  .sym-btn{flex:0 0 auto;flex-direction:column;width:76px;gap:3px;padding:5px 2px;text-align:center;
+    touch-action:pan-x;min-height:62px}
+  .mini{width:52px;height:30px;flex:0 0 30px}
+  .sym-btn span{font-size:11px}
+  .insp{position:absolute;left:0;right:0;bottom:0;width:auto;flex:0 0 auto;max-height:42%;
+    padding-bottom:calc(24px + env(safe-area-inset-bottom,0px));
     border-left:0;border-top:1px solid var(--line);z-index:20;
     box-shadow:0 -8px 24px rgba(0,0,0,.14)}
   .stage{flex:1 1 auto}
@@ -655,7 +678,8 @@ function addNode(type,x,y){
  var n={id:nid(),type:type,x:snapGrid(x),y:snapGrid(y),rot:0,s:1,label:d.label||''};
  if(d.resize){n.w=d.w;n.h=d.h;}
  snap(); doc.nodes.push(n); sel.clear(); sel.add('n'+n.id); render(); save();
- msg('Placed '+d.name+(d.ports.length?' — press P to run pipe from its ports':''));
+ msg('Placed '+d.name+(d.ports.length?(touchUI()?' — tap Pipe to run line from its ports'
+                                                :' — press P to run pipe from its ports'):''));
  return n;
 }
 function deleteSel(){
@@ -847,7 +871,8 @@ function finishDraft(){
  if(draft.pts.length>1){
    snap();
    doc.pipes.push({id:nid(),pts:draft.pts,a:draft.a||null,b:draft.b||null,size:draft.size||sizeSel.value,style:'solid'});
-   save(); msg('Pipe added — keep drawing, or press V to select');
+   save(); msg(touchUI()?'Pipe added — keep drawing, or tap Select'
+                        :'Pipe added — keep drawing, or press V to select');
  }
  draft=null; render();
 }
@@ -908,6 +933,23 @@ function fit(){
 /* ============================ inspector ============================ */
 function renderInspector(){
  var keys=[];sel.forEach(function(k){keys.push(k);});
+ var narrow=window.matchMedia&&window.matchMedia('(max-width:860px)').matches;
+ var coarse=window.matchMedia&&window.matchMedia('(pointer:coarse)').matches;
+ if(keys.length===0&&narrow){ insp.hidden=true; insp.innerHTML=''; return; }
+ insp.hidden=false;
+ if(keys.length===0&&coarse){
+   insp.innerHTML='<h2>Sheet</h2>'+
+     '<p class="hint">Tap a symbol, then tap the sheet to place it. Tap <b>Pipe</b>, then tap port to port &mdash; the bar over the drawing carries <b>Done</b>, <b>Back</b> and <b>Cancel</b>.</p>'+
+     '<h2>Gestures</h2><div class="keys">'+
+     '<code>drag</code><span>pan the sheet</span>'+
+     '<code>pinch</code><span>zoom</span>'+
+     '<code>tap</code><span>select a symbol or run</span>'+
+     '<code>drag</code><span>move what is selected</span>'+
+     '<code>Pencil</code><span>draws; your palm is ignored</span>'+
+     '<code>Fit</code><span>bring it all back on screen</span></div>'+
+     '<p class="hint">Everything else lives in this panel once you select something.</p>';
+   return;
+ }
  if(keys.length===0){
    insp.innerHTML='<h2>Sheet</h2>'+
      '<p class="hint">Drag a symbol from the palette onto the sheet. Switch to <b>Pipe</b> and click from one port to another &mdash; the line snaps to ports, pipe vertices, and the 10-unit grid, and routes as a clean 90&deg; run.</p>'+
@@ -1007,17 +1049,21 @@ function setTool(t){
  document.getElementById('tPipe').setAttribute('aria-pressed',String(t==='pipe'));
  cv.classList.toggle('mode-pipe',t==='pipe');
  if(t==='pipe') setArmed(null);
- msg(t==='pipe'?'Click a port or the grid to start a run — Shift for free angle, Tab flips the elbow, Enter ends it.'
-                :'Drag to move, Shift-click to add to the selection.');
+ if(touchUI()) msg(t==='pipe'?'Tap a port or the grid to start a run — the bar below finishes, steps back or cancels.'
+                             :'Tap a symbol or a run to select it, then drag to move it.');
+ else msg(t==='pipe'?'Click a port or the grid to start a run — Shift for free angle, Tab flips the elbow, Enter ends it.'
+                    :'Drag to move, Shift-click to add to the selection.');
  render();
 }
 function setArmed(k){
  armed=k;
  Array.prototype.forEach.call(document.querySelectorAll('.sym-btn'),function(b){
    b.setAttribute('data-armed',b.getAttribute('data-k')===k?'1':'0');});
- if(k) msg('Click the sheet to place '+SYMS[k].name+' (Esc cancels)');
+ if(k) msg(touchUI()?'Tap the sheet to place '+SYMS[k].name+' — tap it again to cancel'
+                     :'Click the sheet to place '+SYMS[k].name+' (Esc cancels)');
 }
 function msg(s){ document.getElementById('smsg').textContent=s; }
+function touchUI(){ return !!(window.matchMedia&&window.matchMedia('(pointer:coarse)').matches); }
 
 var drawbar=document.getElementById('drawbar');
 function syncDrawbar(){
@@ -1248,7 +1294,8 @@ function start(){
  render();
  fit();
  setTool('select');
- msg('Drag a symbol onto the sheet, then press P and draw pipe between the ports.');
+ msg(touchUI()?'Tap a symbol, tap the sheet to place it, then tap Pipe and draw between the ports.'
+              :'Drag a symbol onto the sheet, then press P and draw pipe between the ports.');
 }
 window.addEventListener('resize',function(){ render(); });
 if(window.claude&&window.claude.hot&&window.claude.hot.ready) window.claude.hot.ready(start);
