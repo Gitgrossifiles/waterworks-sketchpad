@@ -128,6 +128,19 @@ select,input[type=text],input[type=number]{font-family:var(--ui);font-weight:600
 .snapmark{fill:none;stroke:var(--snap);stroke-width:2}
 .draft{fill:none;stroke:var(--accent);stroke-width:2;stroke-dasharray:6 4}
 
+.drawbar{position:absolute;left:50%;transform:translateX(-50%);
+  bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:15;
+  display:flex;align-items:center;gap:4px;padding:5px;
+  background:var(--panel);border:1px solid var(--line);border-radius:9px;
+  box-shadow:0 8px 24px rgba(0,0,0,.18);max-width:calc(100% - 24px);overflow-x:auto}
+.db{font-family:var(--ui);font-weight:600;font-size:13px;letter-spacing:.02em;
+  white-space:nowrap;background:var(--surface);color:var(--ink);
+  border:1px solid var(--line);border-radius:6px;padding:7px 11px;cursor:pointer}
+.db.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.db[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.db[disabled]{opacity:.38;cursor:default}
+.dbsep{width:1px;align-self:stretch;background:var(--line);margin:2px 4px;flex:0 0 1px}
+
 .ghost{position:fixed;z-index:50;pointer-events:none;color:var(--accent);
   width:60px;height:40px;transform:translate(-50%,-50%);opacity:.9}
 
@@ -237,6 +250,14 @@ dialog textarea{width:100%;height:210px;font-family:var(--mono);font-size:11px;
           <g id="lOver"></g>
         </g>
       </svg>
+      <div class="drawbar" id="drawbar" hidden>
+        <button class="db primary" data-a="done">Done</button>
+        <button class="db" data-a="back">Back</button>
+        <button class="db" data-a="cancel">Cancel</button>
+        <span class="dbsep" aria-hidden="true"></span>
+        <button class="db" data-a="free" id="dbFree" aria-pressed="false">Free angle</button>
+        <button class="db" data-a="flip">Flip elbow</button>
+      </div>
     </main>
     <aside class="insp" id="insp"></aside>
   </div>
@@ -404,7 +425,8 @@ function seed(){
 var doc=seed();
 var view={x:0,y:0,k:1};
 var tool='select', armed=null, sel=new Set(), draft=null, snapPt=null;
-var hist=[], future=[], prefFlip=false, shiftDown=false, hoverNode=null;
+var hist=[], future=[], prefFlip=false, shiftDown=false, hoverNode=null, freeAngle=false;
+function orthoOn(){ return !(shiftDown||freeAngle); }
 
 var cv=document.getElementById('cv'),
     lPipes=document.getElementById('lPipes'), lNodes=document.getElementById('lNodes'),
@@ -522,6 +544,7 @@ function render(){
  renderOverlay();
  vg.setAttribute('transform','translate('+r2(view.x)+','+r2(view.y)+') scale('+r2(view.k)+')');
  document.getElementById('sz').textContent=Math.round(view.k*100)+'%';
+ syncDrawbar();
  var sig=[];sel.forEach(function(k){sig.push(k);});sig=sig.join(',');
  if(sig!==lastSig||!insp.contains(document.activeElement)){lastSig=sig;renderInspector();}
 }
@@ -547,7 +570,7 @@ function renderOverlay(){
  });
  if(draft&&draft.pts.length){
    var pv=draft.pts.slice();
-   if(snapPt){var seg=route(pv[pv.length-1],snapPt,!shiftDown); pv=pv.concat(seg.slice(1));}
+   if(snapPt){var seg=route(pv[pv.length-1],snapPt,orthoOn()); pv=pv.concat(seg.slice(1));}
    s+='<polyline class="draft" points="'+pv.map(function(q){return r2(q.x)+','+r2(q.y);}).join(' ')+'"/>';
  }
  if(snapPt&&(tool==='pipe'||draft)){
@@ -676,7 +699,7 @@ cv.addEventListener('pointerdown',function(ev){
      justStarted=true;
    } else justStarted=false;
    drag={mode:'pipe',sx:ev.clientX,sy:ev.clientY,moved:false};
-   renderOverlay();
+   syncDrawbar(); renderOverlay();
    return;
  }
 
@@ -791,10 +814,10 @@ cv.addEventListener('contextmenu',function(e){ if(draft){e.preventDefault();fini
 function commitPoint(s){
  var last=draft.pts[draft.pts.length-1];
  if(dist(last,s)<1){ finishDraft(); return; }
- var seg=route(last,{x:s.x,y:s.y},!shiftDown);
+ var seg=route(last,{x:s.x,y:s.y},orthoOn());
  draft.pts=draft.pts.concat(seg.slice(1));
  if(s.bind){ draft.b=s.bind; finishDraft(); return; }
- renderOverlay();
+ syncDrawbar(); renderOverlay();
 }
 function finishDraft(){
  if(!draft){return;}
@@ -972,6 +995,32 @@ function setArmed(k){
  if(k) msg('Click the sheet to place '+SYMS[k].name+' (Esc cancels)');
 }
 function msg(s){ document.getElementById('smsg').textContent=s; }
+
+var drawbar=document.getElementById('drawbar');
+function syncDrawbar(){
+ drawbar.hidden = (tool!=='pipe');
+ if(drawbar.hidden) return;
+ var live=!!draft;
+ ['done','back','cancel'].forEach(function(a){
+   var b=drawbar.querySelector('[data-a="'+a+'"]');
+   if(b) b.disabled=!live;
+ });
+ document.getElementById('dbFree').setAttribute('aria-pressed',String(freeAngle));
+}
+drawbar.addEventListener('click',function(ev){
+ var b=ev.target.closest('[data-a]'); if(!b||b.disabled) return;
+ var a=b.getAttribute('data-a');
+ if(a==='done') finishDraft();
+ else if(a==='cancel') cancelDraft();
+ else if(a==='back'){
+   if(draft&&draft.pts.length>1){ draft.pts.pop(); renderOverlay(); msg('Removed the last point'); }
+   else cancelDraft();
+ }
+ else if(a==='free'){ freeAngle=!freeAngle; syncDrawbar(); renderOverlay();
+   msg(freeAngle?'Free angle \u2014 lines run straight to where you tap'
+                :'Square runs \u2014 lines turn 90\u00b0'); }
+ else if(a==='flip'){ prefFlip=!prefFlip; renderOverlay(); msg('Flipped which way the corner turns'); }
+});
 
 document.getElementById('tSelect').onclick=function(){setTool('select');};
 document.getElementById('tPipe').onclick=function(){setTool('pipe');};
