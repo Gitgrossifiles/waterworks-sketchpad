@@ -13,8 +13,8 @@ offline. Right-click it once and "Pin to Quick access", or drag it to the
 desktop with Alt held to leave a shortcut there.
 
 `StartSketchpad.bat` is an alternative that serves the folder on port 8010
-instead. It is only worth using if you want to reach the page from a phone or
-tablet on the same network, at `http://<this-pc-ip>:8010/`.
+instead. Use it when you want to reach the page from an iPad or phone on the
+same network, at `http://<this-pc-ip>:8010/` (see below).
 
 Note: opening a file from the GitHub page shows you its text, not the running
 program. GitHub is the backup copy; run it from D:.
@@ -42,6 +42,49 @@ program. GitHub is the backup copy; run it from D:.
 | `Ctrl+Z` / `Ctrl+Shift+Z` | undo / redo |
 | `Esc` | cancel the run or the armed symbol |
 | drag / wheel / pinch | pan / zoom |
+
+## On an iPad
+
+This is the main way it gets used, so the tablet side is built out rather than
+tolerated.
+
+**Getting it on there.** Two options:
+
+1. *Over the network.* Run `StartSketchpad.bat` on the PC, find the PC's IP
+   (`ipconfig` in a Command Prompt, the IPv4 address), and open
+   `http://<that-ip>:8010/` in Safari. Both devices must be on the same network.
+2. *Offline copy.* Put `index.html` in iCloud Drive or email it to yourself,
+   then open it from the Files app. It works with no network at all.
+
+Either way, use Safari's **Share -> Add to Home Screen**. It then opens full
+screen with no browser bars, which is the difference between a web page and
+something that feels like an app on the truck.
+
+**Drawing with a Pencil.** The Pencil draws and your palm is ignored while it
+is touching the glass. Finger gestures come back a moment after you lift it.
+
+**Everything works without a keyboard.** While the pipe tool is active a bar
+sits over the drawing with **Done**, **Back**, **Cancel**, a **Free angle**
+toggle and **Flip elbow** — the five things that were otherwise Enter, Esc,
+Shift and Tab.
+
+| Gesture | Does |
+| --- | --- |
+| tap a symbol, then tap the sheet | place it |
+| tap | select a symbol or a pipe run |
+| drag what is selected | move it |
+| one finger on empty sheet | pan |
+| pinch | zoom |
+| **Fit** | bring the whole drawing back on screen |
+
+Snap targets and the port and vertex handles are drawn larger for a fingertip,
+and the side panel folds away until you select something so it is not eating the
+screen in portrait.
+
+**Saving on iPad.** Export SVG and Save drop the file into the Files app the
+same as any other download. Open reads one back from Files or iCloud. The
+autosave is per-browser, so a drawing made on the iPad stays on the iPad until
+you Save it and move the file across.
 
 ## Symbols
 
