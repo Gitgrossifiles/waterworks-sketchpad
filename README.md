@@ -5,19 +5,37 @@ check valves and backflow assemblies joined by pipe runs that snap into place.
 
 No server, no database, no build step. `index.html` is the whole program.
 
-## Running it
+## Opening it
 
-Open `D:\programs\Waterworks Sketchpad` in File Explorer and double-click
-`index.html`. That is the whole thing — it opens in your browser and works
-offline. Right-click it once and "Pin to Quick access", or drag it to the
-desktop with Alt held to leave a shortcut there.
+**https://gitgrossifiles.github.io/waterworks-sketchpad/**
 
-`StartSketchpad.bat` is an alternative that serves the folder on port 8010
-instead. Use it when you want to reach the page from an iPad or phone on the
-same network, at `http://<this-pc-ip>:8010/` (see below).
+That is the tool, live, on any device with a browser. Nothing to install, no
+server to start, and it works away from the shop on cellular. This is the same
+way `Pitgps` and `meterlookup` are published.
 
-Note: opening a file from the GitHub page shows you its text, not the running
-program. GitHub is the backup copy; run it from D:.
+On an iPad, open that link in Safari and use **Share -> Add to Home Screen**. It
+then opens full screen with no browser bars.
+
+### The copy on D:
+
+`D:\programs\Waterworks Sketchpad\index.html` is the same program as a local
+file. Double-click it to run it with no network at all. Use this one when the
+internet is down or you are somewhere without service.
+
+`StartSketchpad.bat` serves the folder on port 8010 so another device on the
+same network can reach it at `http://192.168.0.32:8010/`. Since the published
+link above works from anywhere, this is now only useful with no internet.
+
+### Two copies, two sets of drawings
+
+The published page and the local file are separate origins, so each keeps its
+own autosave. A drawing started on the published link will not appear when you
+open the local file, or the other way round. Use **Save** and **Open** to carry
+a drawing between them, or between devices.
+
+Changes to `index.html` only reach the published link once they are committed
+and pushed. Nothing anyone draws leaves their own browser — the page has no
+server behind it.
 
 ## Drawing
 
@@ -46,22 +64,10 @@ program. GitHub is the backup copy; run it from D:.
 ## On an iPad
 
 This is the main way it gets used, so the tablet side is built out rather than
-tolerated.
+tolerated. Open the link above in Safari and add it to your home screen.
 
-**Getting it on there.** Two options:
-
-1. *Over the network.* Run `StartSketchpad.bat` on the PC, find the PC's IP
-   (`ipconfig` in a Command Prompt, the IPv4 address), and open
-   `http://<that-ip>:8010/` in Safari. Both devices must be on the same network.
-2. *Offline copy.* Put `index.html` in iCloud Drive or email it to yourself,
-   then open it from the Files app. It works with no network at all.
-
-Either way, use Safari's **Share -> Add to Home Screen**. It then opens full
-screen with no browser bars, which is the difference between a web page and
-something that feels like an app on the truck.
-
-**Drawing with a Pencil.** The Pencil draws and your palm is ignored while it
-is touching the glass. Finger gestures come back a moment after you lift it.
+**Drawing with a Pencil.** The Pencil draws and your palm is ignored while it is
+touching the glass. Finger gestures come back a moment after you lift it.
 
 **Everything works without a keyboard.** While the pipe tool is active a bar
 sits over the drawing with **Done**, **Back**, **Cancel**, a **Free angle**
@@ -82,9 +88,7 @@ and the side panel folds away until you select something so it is not eating the
 screen in portrait.
 
 **Saving on iPad.** Export SVG and Save drop the file into the Files app the
-same as any other download. Open reads one back from Files or iCloud. The
-autosave is per-browser, so a drawing made on the iPad stays on the iPad until
-you Save it and move the file across.
+same as any other download. Open reads one back from Files or iCloud.
 
 ## Symbols
 
