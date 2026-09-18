@@ -7,12 +7,17 @@ No server, no database, no build step. `index.html` is the whole program.
 
 ## Running it
 
-Double-click `StartSketchpad.bat`. It serves the folder on port 8010 and opens
-the page in your browser.
+Open `D:\programs\Waterworks Sketchpad` in File Explorer and double-click
+`index.html`. That is the whole thing — it opens in your browser and works
+offline. Right-click it once and "Pin to Quick access", or drag it to the
+desktop with Alt held to leave a shortcut there.
 
-You can also open `index.html` directly, but the local server is preferred:
-browsers give a real origin a reliable place to keep the autosave, which
-`file://` does not always do.
+`StartSketchpad.bat` is an alternative that serves the folder on port 8010
+instead. It is only worth using if you want to reach the page from a phone or
+tablet on the same network, at `http://<this-pc-ip>:8010/`.
+
+Note: opening a file from the GitHub page shows you its text, not the running
+program. GitHub is the backup copy; run it from D:.
 
 ## Drawing
 
