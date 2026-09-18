@@ -1,0 +1,5 @@
+# Local safety copies made before edits
+*.bak
+
+# Exported drawings kept next to the tool
+exports/
