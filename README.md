@@ -92,9 +92,21 @@ same as any other download. Open reads one back from Files or iCloud.
 
 ## Symbols
 
-Water meter, curb stop, fire hydrant, pump, pressure gauge, gate valve, ball
-valve, check valve, pressure reducer, double check assembly, RPZ assembly, tee,
-90 elbow, reducer, strainer, plus a dashed pit/vault outline and a text note.
+**Meters & service** — water meter, deduct/irrigation meter, curb stop,
+corporation stop, fire hydrant, pump, pressure tank, pressure gauge.
+
+**Valves** — gate, ball, check, pressure reducer.
+
+**Backflow** — double check, double check detector, RPZ, pressure vacuum
+breaker, atmospheric vacuum breaker.
+
+**Fittings** — tee, cross, 90 elbow, 45 elbow, reducer, cap/plug, strainer.
+
+**Annotation** — dashed pit/vault outline, text note, flow arrow, north arrow.
+
+The 45 elbow's outlet sits at 45 degrees, so a run into it needs the free-angle
+toggle (**Shift**, or the button on the pipe bar). That is the fitting, not a
+limitation — a run through a 45 is not a 90 run.
 
 Pipe sizes run 3/4" through 12"; the size sets both the printed label and the
 line weight.

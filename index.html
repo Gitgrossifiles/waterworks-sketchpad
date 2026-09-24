@@ -343,6 +343,19 @@ var SYMS={
      '<path d="M-10,-12 A10,10 0 0 1 10,-12" class="fillSurf"/>'+
      '<line x1="-11" y1="-16" x2="11" y2="-22"/>';}},
 
+ deduct:{name:'Deduct / Irrigation Meter',group:'Meters & Service',w:54,h:32,label:'DEDUCT',
+   ports:[{x:-27,y:0},{x:27,y:0}],
+   draw:function(){return '<line x1="-27" y1="0" x2="-14" y2="0"/><line x1="14" y1="0" x2="27" y2="0"/>'+
+     '<circle cx="0" cy="0" r="14" class="fillSurf"/><text class="glyph" x="0" y="0">D</text>';}},
+
+ corp:{name:'Corporation Stop',group:'Meters & Service',w:32,h:36,label:'CORP',
+   ports:[{x:-16,y:2},{x:16,y:2}],
+   draw:function(){return '<line x1="-16" y1="2" x2="-9" y2="2"/><line x1="9" y1="2" x2="16" y2="2"/>'+
+     '<path d="M-9,-5 L-9,9 L0,2 Z" class="fillSurf"/><path d="M9,-5 L9,9 L0,2 Z" class="fillSurf"/>'+
+     '<circle cx="0" cy="2" r="4" class="fillInk"/>'+
+     '<line x1="0" y1="2" x2="0" y2="-9"/>'+
+     '<path d="M-4,-9 L4,-9 L3,-15 L-3,-15 Z" class="fillSurf"/>';}},
+
  curb:{name:'Curb Stop',group:'Meters & Service',w:32,h:38,label:'CURB STOP',
    ports:[{x:-16,y:0},{x:16,y:0}],
    draw:function(){return '<line x1="-16" y1="0" x2="-11" y2="0"/><line x1="11" y1="0" x2="16" y2="0"/>'+
@@ -370,6 +383,39 @@ var SYMS={
      '<path d="M-14,20 L2,20 L-6,29 Z" class="fillSurf"/>'+
      '<line x1="-32" y1="-27" x2="-32" y2="-33"/><line x1="20" y1="-27" x2="20" y2="-33"/>';}},
 
+ pvb:{name:'Pressure Vacuum Breaker',group:'Backflow',w:66,h:52,label:'PVB',
+   ports:[{x:-33,y:4},{x:33,y:4}],
+   draw:function(){return '<line x1="-33" y1="4" x2="-21" y2="4"/><line x1="21" y1="4" x2="33" y2="4"/>'+
+     '<rect x="-21" y="-7" width="42" height="22" rx="2" class="fillSurf"/>'+
+     '<line x1="-21" y1="4" x2="21" y2="4"/>'+
+     '<path d="M-7,-3 L-7,11 L3,4 Z" class="fillInk"/><line x1="3" y1="-4" x2="3" y2="12"/>'+
+     '<line x1="0" y1="-7" x2="0" y2="-15"/>'+
+     '<path d="M-11,-15 L-11,-20 A11,7 0 0 1 11,-20 L11,-15 Z" class="fillSurf"/>'+
+     '<line x1="-13" y1="15" x2="-13" y2="21"/><line x1="11" y1="15" x2="11" y2="21"/>';}},
+
+ avb:{name:'Atmospheric Vacuum Breaker',group:'Backflow',w:50,h:46,label:'AVB',
+   ports:[{x:-25,y:6},{x:25,y:6}],
+   draw:function(){return '<line x1="-25" y1="6" x2="-10" y2="6"/><line x1="10" y1="6" x2="25" y2="6"/>'+
+     '<rect x="-10" y="-3" width="20" height="18" rx="2" class="fillSurf"/>'+
+     '<line x1="0" y1="-3" x2="0" y2="-11"/>'+
+     '<path d="M-10,-11 L-10,-16 A10,6 0 0 1 10,-16 L10,-11 Z" class="fillSurf"/>'+
+     '<line x1="-6" y1="-19" x2="-3" y2="-22"/><line x1="6" y1="-19" x2="3" y2="-22"/>';}},
+
+ dcda:{name:'Double Check Detector',group:'Backflow',w:116,h:78,label:'DCDA',
+   ports:[{x:-58,y:-14},{x:58,y:-14}],
+   draw:function(){return '<line x1="-58" y1="-14" x2="-42" y2="-14"/><line x1="42" y1="-14" x2="58" y2="-14"/>'+
+     '<rect x="-42" y="-33" width="84" height="38" rx="2" class="fillSurf"/>'+
+     '<line x1="-42" y1="-14" x2="42" y2="-14"/>'+
+     '<path d="M-28,-21 L-28,-7 L-18,-14 Z" class="fillInk"/><line x1="-18" y1="-22" x2="-18" y2="-6"/>'+
+     '<path d="M6,-21 L6,-7 L16,-14 Z" class="fillInk"/><line x1="16" y1="-22" x2="16" y2="-6"/>'+
+     '<line x1="-32" y1="-33" x2="-32" y2="-39"/><line x1="20" y1="-33" x2="20" y2="-39"/>'+
+     // the detector bypass: a small meter round the outside, which is the
+     // whole point of a detector assembly -- it catches a leak or an
+     // unauthorised draw that the main checks pass straight through.
+     '<path d="M-34,5 L-34,24 L34,24 L34,5"/>'+
+     '<circle cx="0" cy="24" r="9" class="fillSurf"/><text class="glyph" x="0" y="24" style="font-size:11px">M</text>'+
+     '<path d="M-22,19 L-22,29 L-15,24 Z" class="fillInk"/>';}},
+
  strainer:{name:'Strainer',group:'Fittings',w:44,h:28,label:'STRAINER',
    ports:[{x:-22,y:0},{x:22,y:0}],
    draw:function(){return '<line x1="-22" y1="0" x2="-17" y2="0"/><line x1="17" y1="0" x2="22" y2="0"/>'+
@@ -389,6 +435,16 @@ var SYMS={
    ports:[{x:-14,y:0},{x:10,y:10}],
    draw:function(){return '<path d="M-14,0 L0,0 L10,10"/><circle cx="0" cy="0" r="2.6" class="fillInk"/>'+
      '<path d="M-7,0 A7,7 0 0 0 -5,5"/>';}},
+
+ cross:{name:'Cross',group:'Fittings',w:34,h:34,label:'',
+   ports:[{x:-16,y:0},{x:16,y:0},{x:0,y:-16},{x:0,y:16}],
+   draw:function(){return '<line x1="-16" y1="0" x2="16" y2="0"/><line x1="0" y1="-16" x2="0" y2="16"/>'+
+     '<circle cx="0" cy="0" r="2.6" class="fillInk"/>';}},
+
+ cap:{name:'Cap / Plug',group:'Fittings',w:26,h:24,label:'',
+   ports:[{x:-13,y:0}],
+   draw:function(){return '<line x1="-13" y1="0" x2="3" y2="0"/>'+
+     '<path d="M3,-9 L9,-9 L9,9 L3,9 Z" class="fillSurf"/>';}},
 
  reducer:{name:'Reducer',group:'Fittings',w:36,h:26,label:'',
    ports:[{x:-18,y:0},{x:18,y:0}],
@@ -426,11 +482,25 @@ var SYMS={
    draw:function(n){var w=n.w||200,h=n.h||130;
      return '<rect x="'+(-w/2)+'" y="'+(-h/2)+'" width="'+w+'" height="'+h+'" rx="3" class="dash"/>';}},
 
+ flow:{name:'Flow Arrow',group:'Annotation',w:60,h:22,label:'',
+   ports:[],
+   draw:function(){return '<line x1="-26" y1="0" x2="14" y2="0"/>'+
+     '<path d="M14,-7 L28,0 L14,7 Z" class="fillInk"/>';}},
+
+ north:{name:'North Arrow',group:'Annotation',w:34,h:70,label:'',
+   ports:[],
+   draw:function(){return '<line x1="0" y1="22" x2="0" y2="-12"/>'+
+     '<path d="M0,-24 L8,-6 L0,-11 L-8,-6 Z" class="fillInk"/>'+
+     '<text class="glyph" x="0" y="31">N</text>';}},
+
  note:{name:'Text Note',group:'Annotation',w:120,h:22,label:'NOTE',lbl:'center',
    ports:[],draw:function(){return '';}}
 };
-var ORDER=['meter','curb','hydrant','pump','ptank','gauge','gate','ball','check','prv',
-           'dc','rpz','tee','elbow','elbow45','reducer','strainer','pit','note'];
+var ORDER=['meter','deduct','curb','corp','hydrant','pump','ptank','gauge',
+           'gate','ball','check','prv',
+           'dc','dcda','rpz','pvb','avb',
+           'tee','cross','elbow','elbow45','reducer','cap','strainer',
+           'pit','note','flow','north'];
 
 /* ============================ document state ============================ */
 var uid=1;
