@@ -430,6 +430,14 @@ var SYMS={
      '<rect x="-17" y="-12" width="34" height="24" class="fillSurf"/>'+
      '<path d="M-11,-12 L3,12 M-3,-12 L11,12"/>';}},
 
+ hose:{name:'Garden Hose Fitting',group:'Fittings',w:50,h:26,label:'HOSE',
+   ports:[{x:-25,y:0},{x:25,y:0}],
+   draw:function(){return '<line x1="-25" y1="0" x2="-14" y2="0"/>'+
+     '<rect x="-14" y="-8" width="12" height="16" class="fillSurf"/>'+
+     '<line x1="-10" y1="-8" x2="-10" y2="8"/><line x1="-6" y1="-8" x2="-6" y2="8"/>'+
+     '<path d="M-2,-5 L4,-5 L4,5 L-2,5 Z" class="fillSurf"/>'+
+     '<path d="M4,0 C10,0 10,-6 14.5,-6 C19,-6 19,0 25,0"/>';}},
+
  tee:{name:'Tee',group:'Fittings',w:34,h:20,label:'',
    ports:[{x:-16,y:0},{x:16,y:0},{x:0,y:14}],
    draw:function(){return '<line x1="-16" y1="0" x2="16" y2="0"/><line x1="0" y1="0" x2="0" y2="14"/>'+
@@ -507,7 +515,7 @@ var SYMS={
 var ORDER=['meter','deduct','tail','curb','corp','hydrant','pump','ptank','gauge',
            'gate','ball','check','prv',
            'dc','dcda','rpz','pvb','avb',
-           'tee','cross','elbow','elbow45','reducer','cap','strainer',
+           'tee','cross','elbow','elbow45','reducer','cap','strainer','hose',
            'pit','note','flow','north'];
 
 /* ============================ document state ============================ */

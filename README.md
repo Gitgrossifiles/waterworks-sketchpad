@@ -100,7 +100,8 @@ curb stop, corporation stop, fire hydrant, pump, pressure tank, pressure gauge.
 **Backflow** — double check, double check detector, RPZ, pressure vacuum
 breaker, atmospheric vacuum breaker.
 
-**Fittings** — tee, cross, 90 elbow, 45 elbow, reducer, cap/plug, strainer.
+**Fittings** — tee, cross, 90 elbow, 45 elbow, reducer, cap/plug, strainer,
+garden hose fitting.
 
 **Annotation** — dashed pit/vault outline, text note, flow arrow, north arrow.
 
