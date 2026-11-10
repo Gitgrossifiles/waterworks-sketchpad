@@ -92,8 +92,8 @@ same as any other download. Open reads one back from Files or iCloud.
 
 ## Symbols
 
-**Meters & service** — water meter, deduct/irrigation meter, curb stop,
-corporation stop, fire hydrant, pump, pressure tank, pressure gauge.
+**Meters & service** — water meter, deduct/irrigation meter, meter tail piece,
+curb stop, corporation stop, fire hydrant, pump, pressure tank, pressure gauge.
 
 **Valves** — gate, ball, check, pressure reducer.
 

@@ -348,6 +348,14 @@ var SYMS={
    draw:function(){return '<line x1="-27" y1="0" x2="-14" y2="0"/><line x1="14" y1="0" x2="27" y2="0"/>'+
      '<circle cx="0" cy="0" r="14" class="fillSurf"/><text class="glyph" x="0" y="0">D</text>';}},
 
+ tail:{name:'Meter Tail Piece',group:'Meters & Service',w:44,h:24,label:'TAIL PIECE',
+   ports:[{x:-22,y:0},{x:22,y:0}],
+   draw:function(){return '<line x1="-22" y1="0" x2="-17" y2="0"/><line x1="-6" y1="0" x2="22" y2="0"/>'+
+     '<rect x="-17" y="-9" width="11" height="18" class="fillSurf"/>'+
+     '<line x1="-17" y1="-3" x2="-6" y2="-3"/><line x1="-17" y1="3" x2="-6" y2="3"/>'+
+     '<rect x="-6" y="-4.5" width="20" height="9" class="fillSurf"/>'+
+     '<line x1="4" y1="-4.5" x2="4" y2="4.5"/><line x1="7.5" y1="-4.5" x2="7.5" y2="4.5"/><line x1="11" y1="-4.5" x2="11" y2="4.5"/>';}},
+
  corp:{name:'Corporation Stop',group:'Meters & Service',w:32,h:36,label:'CORP',
    ports:[{x:-16,y:2},{x:16,y:2}],
    draw:function(){return '<line x1="-16" y1="2" x2="-9" y2="2"/><line x1="9" y1="2" x2="16" y2="2"/>'+
@@ -496,7 +504,7 @@ var SYMS={
  note:{name:'Text Note',group:'Annotation',w:120,h:22,label:'NOTE',lbl:'center',
    ports:[],draw:function(){return '';}}
 };
-var ORDER=['meter','deduct','curb','corp','hydrant','pump','ptank','gauge',
+var ORDER=['meter','deduct','tail','curb','corp','hydrant','pump','ptank','gauge',
            'gate','ball','check','prv',
            'dc','dcda','rpz','pvb','avb',
            'tee','cross','elbow','elbow45','reducer','cap','strainer',
